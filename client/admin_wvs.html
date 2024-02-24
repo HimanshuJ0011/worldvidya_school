@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <style>
+  
+      .container_reg {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="number"],
+      select {
+        width: calc(100% - 20px);
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button.print {
+        background-color: #28a745;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      @media print {
+      
+        .container_reg,
+        .container_reg * {
+          visibility: visible;
+        }
+        .container_reg {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+
+     /* this is css for receipt section  */
+
+       .container_rec {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header img {
+        max-width: 200px;
+      }
+      .header h2 {
+        margin: 5px 0;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .column {
+        width: 48%;
+      }
+      .column:last-child {
+        text-align: right;
+      }
+      .footer {
+        margin-top: 20px;
+      }
+      .print-btn {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .print-btn button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .print-btn button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="passwordSection">
+      <label for="password">Enter Password:</label>
+      <input type="password" id="password" name="password" />
+      <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="adminPanel" style="display: none">
+      <button onclick="register()">Register a Student</button>
+      <button onclick="receipt()">Generate a Receipt</button>
+
+      <div id="registration_section" style="display: none">
+        <div class="container_reg">
+          <h2>Student Registration Form</h2>
+          <form id="registrationForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required />
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required />
+
+            <label for="dob">Date of Birth (DOB):</label>
+            <input type="date" id="dob" required />
+
+            <label for="motherName">Mother's Name:</label>
+            <input type="text" id="motherName" required />
+
+            <label for="fatherName">Father's Name:</label>
+            <input type="text" id="fatherName" required />
+
+            <label for="mobileNo">Mobile Number:</label>
+            <input type="text" id="mobileNo" required />
+
+            <label for="email">Email ID (Optional):</label>
+            <input type="email" id="email" />
+
+            <label for="class">Class:</label>
+            <select id="class" required>
+              <option value="">Select Class</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+
+            <label for="board">Board:</label>
+            <select id="board" required>
+              <option value="">Select Board</option>
+              <option value="Haryana">Haryana</option>
+              <option value="CBSE">CBSE</option>
+              <option value="Others">Others</option>
+            </select>
+
+            <label for="lastSchool">Last School Attended:</label>
+            <input type="text" id="lastSchool" required />
+
+            <label for="stream">Stream (if class 11 or 12):</label>
+            <select id="stream">
+              <option value="">Select Stream</option>
+              <option value="Arts">Arts</option>
+              <option value="Science">Science</option>
+              <option value="Commerce">Commerce</option>
+            </select>
+
+            <label for="totalFees">Total Admission Fees:</label>
+            <input type="number" id="totalFees" required />
+
+            <label for="paidFees">Paid Fees:</label>
+            <input type="number" id="paidFees" required />
+
+            <label for="remainingFees">Remaining Fees:</label>
+            <input type="number" id="remainingFees" readonly />
+
+            <button type="submit" class="print"  onclick="window.print()">Submit/Print</button>
+            <!-- <button type="button" class="print" onclick="window.print()">
+              Click to Print
+            </button> -->
+          </form>
+        </div>
+
+        <script>
+          document
+            .getElementById("registrationForm")
+            .addEventListener("submit", function (event) {
+              event.preventDefault();
+              calculateRemainingFees();
+            });
+
+          function calculateRemainingFees() {
+            var totalFees = parseInt(
+              document.getElementById("totalFees").value
+            );
+            var paidFees = parseInt(document.getElementById("paidFees").value);
+            var remainingFees = totalFees - paidFees;
+            document.getElementById("remainingFees").value = remainingFees;
+          }
+        </script>
+      </div>
+
+      <div id="receipt_section" style="display: none">
+        <div class="container_rec">
+          <div class="header">
+            <h1> World Vidya School</h1>
+            <h2>School Admission Bill Receipt</h2>
+            <p>Date: [Date]<br />Receipt Number: [Receipt Number]</p>
+          </div>
+          <div class="row">
+            <div class="column">
+              <h3>Student Information:</h3>
+              <p>
+                - Name: [Student Name]<br />
+                - Date of Birth: [DOB]<br />
+                - Grade/Class: [Grade/Class]<br />
+                - Admission Session: [Session]
+              </p>
+            </div>
+            <div class="column">
+              <h3>Fees Breakdown:</h3>
+              <p>
+                - Total Fees: [Total Amount]<br />
+                - Amount Paid: [Amount]<br />
+                - Remaining Fee: [Remaining Amount]
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column">
+              <h3>Payment Information:</h3>
+              <p>
+                - Payment Method: [Cash/Cheque/Card/Online Transfer]<br />
+                - Date of Payment: [Date]
+              </p>
+            </div>
+            <div class="column"></div>
+          </div>
+          <div class="footer">
+            <p>Principal's Signature: ___________________________________</p>
+            <p>
+              Thank you for choosing [School Name]. If you have any questions or
+              concerns, please feel free to contact us at the provided contact
+              details. We look forward to a successful academic journey with
+              your child.
+            </p>
+          </div>
+          <div class="print-btn">
+            <button onclick="window.print()">Print Receipt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      //   function printReceipt() {
+      //     window.print();
+      //   }
+
+      function checkPassword() {
+        var password = document.getElementById("password").value;
+        if (password === "worldvidya") {
+          document.getElementById("passwordSection").style.display = "none";
+          document.getElementById("adminPanel").style.display = "block";
+        } else {
+          //   alert("Incorrect password. Please try again.");
+          document.getElementById("passwordSection").style.display = "none";
+          document.getElementById("adminPanel").style.display = "block";
+        }
+      }
+
+      function register() {
+        document.getElementById("registration_section").style.display = "block";
+        document.getElementById("receipt_section").style.display = "none";
+      }
+
+      function receipt() {
+        document.getElementById("receipt_section").style.display = "block";
+        document.getElementById("registration_section").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

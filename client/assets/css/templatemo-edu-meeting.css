@@ -1121,6 +1121,7 @@ section.our-courses {
   padding-bottom: 130px;
 }
 
+
 .our-courses .item .down-content {
   background-color: #fff;
 }
@@ -1131,6 +1132,12 @@ section.our-courses {
   color: #1f272b;
   text-align: center; 
   border-bottom: 1px solid #eee;
+}
+.our-courses .item .down-content p {
+  padding: 5px;
+  font-size: 12px;
+  color: #1f272b;
+  text-align: center; 
 }
 
 .our-courses .item .down-content .info {

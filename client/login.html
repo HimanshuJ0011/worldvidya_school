@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"] {
+            width: calc(100% - 22px); /* Account for padding */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+
+        header .logo {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        /* Sub Header Styles */
+        .sub-header {
+            background-color: #f4f4f4;
+            padding: 10px 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .sub-header .left-content span {
+            margin-right: 20px;
+        }
+
+        .sub-header .right-icons ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sub-header .right-icons ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .sub-header .right-icons ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 0 0 5px 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">World Vidya School</a>
+    </header>
+
+    <!-- Sub Header -->
+    <div class="sub-header">
+        <div class="left-content">
+            <p>
+                <span><i class="fa fa-phone"></i><em>798853664</em></span>
+                <span><i class="fa fa-envelope"></i><em>worldvidyaa@gmail.com</em></span>
+                <span><i class="fa fa-map-marker"></i><em>Basant Vihar, Bahadurgarh, Haryana 124507</em></span>
+            </p>
+        </div>
+        <div class="right-icons">
+            <ul>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Login Container -->
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <a href="#" id="register-link">Register</a></p>
+    </div>
+
+    <!-- Registration Container (Hidden by Default) -->
+    <div class="container" id="register-container" style="display: none;">
+        <h2>Register</h2>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="new-username">Username:</label>
+                <input type="text" id="new-username" name="new-username" required>
+            </div>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="new-mobile">mobile no.:</label>
+                <input type="number" id="new-mobile" name="new-mobile" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password">Password:</label>
+                <input type="password" id="new-password" name="new-password" required>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+        <p>Already have an account? <a href="#" id="login-link">Login</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright © 2024 World Vidya, All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle between login and registration forms
+        document.getElementById("register-link").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("register-container").style.display = "block";
+        });
+
+        document.getElementById("login-link").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.getElementById("login-container").style.display = "block";
+            document.getElementById("register-container").style.display = "none";
+        });
+
+        // Login form submission
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Your login logic here
+            alert("Login logic will be implemented here.");
+        });
+
+        // Registration form submission
+        document.getElementById("register-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Your registration logic here
+            alert("Registration logic will be implemented here.");
+        });
+    </script>
+</body>
+</html>

@@ -781,10 +781,11 @@ services
 }
 
 .services .item {
-  background-image: url(../images/service-item-bg.jpg);
+  /* background-image: url(../images/service-item-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: center center; */
+  background-color: rgba(158, 163, 147, 0.689);
   border-radius: 20px;
   text-align: center;
   color: #fff;
@@ -804,7 +805,7 @@ services
 }
 
 .services .item p {
-  color: #fff;
+  color: white;
   font-size: 13px;
 }
 
@@ -1100,6 +1101,8 @@ section.apply-now .item p {
   padding: 20px;
   padding-top: 0;
 }
+
+
 
 
 /* 

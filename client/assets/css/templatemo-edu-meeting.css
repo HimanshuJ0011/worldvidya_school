@@ -305,7 +305,7 @@ header
 .header-area .main-nav .logo {
   line-height: 100px;
   color: #fff;
-  font-size: 28px;
+  font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -315,6 +315,15 @@ header
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
+
+@media (max-width: 767px) {
+  .header-area .main-nav .logo {
+    font-size: 15px;
+  }
+
+
+}
+
 
 .background-header .main-nav .logo {
   line-height: 75px;

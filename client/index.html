@@ -789,6 +789,18 @@
       <p>Copyright © 2024 World Vidya,All Rights Reserved.
       </p>
     </div>
+
+   <center>
+    <div id="popup" class="popup-container">
+      <div class="popup-content">
+        <button style="float: right;"  onclick="closePopup()">✖</button>
+
+        <img src="/assets/images/Career-Opportunities.webp" alt="Popup Poster">
+        <p>Welcome to our website! Explore career opportunities by clicking the button below.</p>
+        <button onclick="redirectToCareerPage()">Explore Careers</button>
+      </div>
+    </div>
+   </center>
   </section>
 
   <!-- Scripts -->
@@ -859,6 +871,24 @@ function mobvalidation() {
     $(window).scroll(function () {
       checkSection();
     });
+
+
+    // pop up js
+
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function() {
+        document.getElementById("popup").style.display = "block";
+      }, 2000);
+    });
+
+    function redirectToCareerPage() {
+      window.location.href = "career.html"; // Replace "career.html" with the actual URL of your career page
+    }
+ 
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
   </script>
 </body>
 

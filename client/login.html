@@ -210,7 +210,7 @@
     const formData = new FormData(this);
     const formDataJSON = Object.fromEntries(formData.entries());
 
-    axios.post('http://127.0.0.1:3000/signin', formDataJSON)
+    axios.post('https://api.worldvidyaschool.in/signin', formDataJSON)
         .then(function(response) {
             console.log(response.data);
             // Check if response data indicates successful sign-in
@@ -236,7 +236,7 @@
             const formDataJSON = Object.fromEntries(formData.entries());
 
           
-            axios.post('http://127.0.0.1:3000/signup', formDataJSON)
+            axios.post('https://api.worldvidyaschool.in/signup', formDataJSON)
               .then(function(response) {
                   console.log(response.data);
                   // Redirect to the home page upon successful submission

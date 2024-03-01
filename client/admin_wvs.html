@@ -301,7 +301,7 @@
             const formDataJSON = Object.fromEntries(formData.entries());
 
           
-            axios.post('http://127.0.0.1:3000/registrationform', formDataJSON)
+            axios.post('https://api.worldvidyaschool.in/registrationform', formDataJSON)
               .then(function(response) {
                   console.log(response.data);
                   // Redirect to the home page upon successful submission

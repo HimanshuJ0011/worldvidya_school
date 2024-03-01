@@ -724,36 +724,36 @@
         <div class="col-lg-9 align-self-center">
           <div class="row">
             <div class="col-lg-12">
-              <form onsubmit="" id="contactForm" action="/contacts" method="post">
+              <form onsubmit="" class="contact_id" id="contactForm" action="/contacts" method="post">
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>Let's get in touch</h2>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="name" type="text" id="name" placeholder="YOURNAME...*" required="">
+                      <input class="input_id" name="name" type="text" id="name" placeholder="YOURNAME...*" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="mobile" type="number" id="email" placeholder="YOUR MOBILE...*"
+                      <input class="input_id" name="mobile" type="number" id="email" placeholder="YOUR MOBILE...*"
                         onchange="mobvalidation()" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="subject" type="text" id="subject" placeholder="SUBJECT...*" required="">
+                      <input class="input_id" name="subject" type="text" id="subject" placeholder="SUBJECT...*" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <textarea name="message" type="text" class="form-control" id="message"
+                      <textarea name="message" type="text" class="textarea_id" id="message"
                         placeholder="YOUR MESSAGE..." required=""></textarea>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <button type="submit" id="form-submit" class="button">SEND MESSAGE NOW</button>
+                      <button type="submit" id="form-submit" class="button_id">SEND MESSAGE NOW</button>
                     </fieldset>
                   </div>
                 </div>
@@ -793,11 +793,11 @@
    <center>
     <div id="popup" class="popup-container">
       <div class="popup-content">
-        <button style="float: right;"  onclick="closePopup()">✖</button>
+        <button style="float: right; padding: 4px 6px;"  onclick="closePopup()">✖</button>
 
-        <img src="/assets/images/Career-Opportunities.webp" alt="Popup Poster">
-        <p>Welcome to our website! Explore career opportunities by clicking the button below.</p>
-        <button onclick="redirectToCareerPage()">Explore Careers</button>
+        <img src="/assets/images/requirements.jpeg" alt="Popup Poster">
+        <p><span>Welcome to our website!</span> <br> WE ARE RECRUTING STAFF <br> Explore job opportunities by clicking the button below.</p>
+        <button onclick="redirectToCareerPage()">Explore Jobs</button>
       </div>
     </div>
    </center>

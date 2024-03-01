@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
   
       .container_reg {
@@ -125,66 +127,67 @@
           <h2>Student Registration Form</h2>
           <form id="registrationForm">
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" required />
+            <input type="text" id="firstName" name="firstName" required />
 
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" required />
+            <input type="text" id="lastName" name="lastName" required />
 
             <label for="dob">Date of Birth (DOB):</label>
-            <input type="date" id="dob" required />
+            <input type="date" id="dob" name="dob" required />
 
             <label for="motherName">Mother's Name:</label>
-            <input type="text" id="motherName" required />
+            <input type="text" id="motherName" name="motherName" required />
 
             <label for="fatherName">Father's Name:</label>
-            <input type="text" id="fatherName" required />
+            <input type="text" id="fatherName" name="fatherName" required />
 
             <label for="mobileNo">Mobile Number:</label>
-            <input type="text" id="mobileNo" required />
+            <input type="text" id="mobileNo" name="mobileNo" required />
 
             <label for="email">Email ID (Optional):</label>
-            <input type="email" id="email" />
+            <input type="email" id="email" name="email" />
 
             <label for="class">Class:</label>
-            <select id="class" required>
-              <option value="">Select Class</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
+            <select id="class" name="standard" required>
+                <option value="">Select Class</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
             </select>
 
             <label for="board">Board:</label>
-            <select id="board" required>
-              <option value="">Select Board</option>
-              <option value="Haryana">Haryana</option>
-              <option value="CBSE">CBSE</option>
-              <option value="Others">Others</option>
+            <select id="board" name="board" required>
+                <option value="">Select Board</option>
+                <option value="Haryana">Haryana</option>
+                <option value="CBSE">CBSE</option>
+                <option value="Others">Others</option>
             </select>
 
             <label for="lastSchool">Last School Attended:</label>
-            <input type="text" id="lastSchool" required />
+            <input type="text" id="lastSchool" name="lastSchool" required />
 
             <label for="stream">Stream (if class 11 or 12):</label>
-            <select id="stream">
-              <option value="">Select Stream</option>
-              <option value="Arts">Arts</option>
-              <option value="Science">Science</option>
-              <option value="Commerce">Commerce</option>
+            <select id="stream" name="stream">
+                <option value="">Select Stream</option>
+                <option value="Arts">Arts</option>
+                <option value="Science">Science</option>
+                <option value="Commerce">Commerce</option>
             </select>
 
             <label for="totalFees">Total Admission Fees:</label>
-            <input type="number" id="totalFees" required />
+            <input type="number" id="totalFees" name="totalFees" required />
 
             <label for="paidFees">Paid Fees:</label>
-            <input type="number" id="paidFees" required />
+            <input type="number" id="paidFees" name="paidFees" required />
 
             <label for="remainingFees">Remaining Fees:</label>
-            <input type="number" id="remainingFees" readonly />
+            <input type="number" id="remainingFees" name="remainingFees" required />
 
+            <!-- <button type="submit" class="print"">Submit/Print</button> -->
             <button type="submit" class="print"  onclick="window.print()">Submit/Print</button>
             <!-- <button type="button" class="print" onclick="window.print()">
               Click to Print
@@ -257,12 +260,14 @@
             </p>
           </div>
           <div class="print-btn">
-            <button onclick="window.print()">Print Receipt</button>
+            <button type="submit" onclick="window.print()">Print Receipt</button>
           </div>
         </div>
       </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
       //   function printReceipt() {
       //     window.print();
@@ -288,6 +293,25 @@
         document.getElementById("receipt_section").style.display = "block";
         document.getElementById("registration_section").style.display = "none";
       }
+
+      
+      document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const formDataJSON = Object.fromEntries(formData.entries());
+
+          
+            axios.post('http://127.0.0.1:3000/registrationform', formDataJSON)
+              .then(function(response) {
+                  console.log(response.data);
+                  // Redirect to the home page upon successful submission
+                  window.location.href = 'login.html';
+              })
+              .catch(function(error) {
+                  console.error(error);
+                  // Handle error response
+              });
+      });
     </script>
   </body>
 </html>

@@ -724,7 +724,7 @@
         <div class="col-lg-9 align-self-center">
           <div class="row">
             <div class="col-lg-12">
-              <form id="contact" action="" method="post">
+              <form onsubmit="" id="contactForm" action="/contacts" method="post">
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>Let's get in touch</h2>
@@ -736,7 +736,7 @@
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="mobile" type="number" id="email" placeholder="YOUR MOBILE..."
+                      <input name="mobile" type="number" id="email" placeholder="YOUR MOBILE...*"
                         onchange="mobvalidation()" required="">
                     </fieldset>
                   </div>
@@ -804,6 +804,11 @@
   </section>
 
   <!-- Scripts -->
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
+
+
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -824,6 +829,25 @@ function mobvalidation() {
     }
 }
 
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          console.log("submit clicked");
+          const formData = new FormData(this);
+          const formDataJSON = Object.fromEntries(formData.entries());
+
+          // Send form data to the backend
+          axios.post('http://127.0.0.1:3000/contactform', formDataJSON)
+              .then(function(response) {
+                  console.log(response.data);
+                  // Redirect to the home page upon successful submission
+                  window.location.href = 'index.html';
+              })
+              .catch(function(error) {
+                  console.error(error);
+                  // Handle error response
+              });
+      });
 
 
     //according to loftblog tut

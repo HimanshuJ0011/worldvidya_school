@@ -1,7 +1,7 @@
 {
   "name": "worldvidyaschoolserver",
   "version": "1.0.0",
-  "description": "This is the server of World Vidya School.",
+  "description": "This is the server of World Vidya Sports Sainik School.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

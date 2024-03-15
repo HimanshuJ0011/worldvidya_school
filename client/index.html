@@ -84,7 +84,7 @@
               <li class="scroll-to-section"><a href="#courses">Glimpse</a></li>
               <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
               <li><a href="login.html">Login | Register</a></li>
-              <li><a href="./admin_wvs.html">admin</a></li>
+              <li><a href="./admin_wvs.html">Admin</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
@@ -202,7 +202,7 @@
             <h4>Academic Curriculum</h4>
             <ul>
               <li><a href="#">6 Grade-12 grade</a></li>
-              <li><a href="#">Affiliated by CBSE and Haryana Board</a></li>
+              <li><a href="#">Affiliated by Haryana Board</a></li>
               <li><a href="#">Arts , Science , Commerce</a></li>
               <li><a href="#">Computer courses and Labs</a></li><br>
               <li><a href="#">Sports</a></li>
@@ -725,36 +725,36 @@
         <div class="col-lg-9 align-self-center">
           <div class="row">
             <div class="col-lg-12">
-              <form id="contact" action="" method="post">
+              <form onsubmit="" class="contact_id" id="contactForm" action="/contacts" method="post">
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>Let's get in touch</h2>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="name" type="text" id="name" placeholder="YOURNAME...*" required="">
+                      <input class="input_id" name="name" type="text" id="name" placeholder="YOURNAME...*" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="mobile" type="number" id="email" placeholder="YOUR MOBILE..."
+                      <input class="input_id" name="mobile" type="number" id="email" placeholder="YOUR MOBILE...*"
                         onchange="mobvalidation()" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-4">
                     <fieldset>
-                      <input name="subject" type="text" id="subject" placeholder="SUBJECT...*" required="">
+                      <input class="input_id" name="subject" type="text" id="subject" placeholder="SUBJECT...*" required="">
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <textarea name="message" type="text" class="form-control" id="message"
+                      <textarea name="message" type="text" class="textarea_id" id="message"
                         placeholder="YOUR MESSAGE..." required=""></textarea>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <button type="submit" id="form-submit" class="button">SEND MESSAGE NOW</button>
+                      <button type="submit" id="form-submit" class="button_id">SEND MESSAGE NOW</button>
                     </fieldset>
                   </div>
                 </div>
@@ -790,9 +790,26 @@
       <p>Copyright © 2024 World Vidya,All Rights Reserved.
       </p>
     </div>
+
+   <center>
+    <div id="popup" class="popup-container">
+      <div class="popup-content">
+        <button style="float: right; padding: 4px 6px;"  onclick="closePopup()">✖</button>
+
+        <img src="/assets/images/requirements.jpeg" alt="Popup Poster">
+        <p><span>Welcome to our website!</span> <br> WE ARE RECRUTING STAFF <br> Explore job opportunities by clicking the button below.</p>
+        <button onclick="redirectToCareerPage()">Explore Jobs</button>
+      </div>
+    </div>
+   </center>
   </section>
 
   <!-- Scripts -->
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
+
+
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -813,6 +830,25 @@
       }
     }
 
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          console.log("submit clicked");
+          const formData = new FormData(this);
+          const formDataJSON = Object.fromEntries(formData.entries());
+
+          // Send form data to the backend
+          axios.post('https://api.worldvidyaschool.in/contactform', formDataJSON)
+              .then(function(response) {
+                  console.log(response.data);
+                  // Redirect to the home page upon successful submission
+                  window.location.href = 'index.html';
+              })
+              .catch(function(error) {
+                  console.error(error);
+                  // Handle error response
+              });
+      });
 
 
     //according to loftblog tut
@@ -860,6 +896,24 @@
     $(window).scroll(function () {
       checkSection();
     });
+
+
+    // pop up js
+
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function() {
+        document.getElementById("popup").style.display = "block";
+      }, 2000);
+    });
+
+    function redirectToCareerPage() {
+      window.location.href = "career.html"; // Replace "career.html" with the actual URL of your career page
+    }
+ 
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
   </script>
 </body>
 

@@ -369,7 +369,7 @@
             event.preventDefault();
             const formData = new FormData(this);
             const formDataJSON = Object.fromEntries(formData.entries());
-            axios.post('http://localhost:8085/registrationform', formDataJSON)
+            axios.post('https:api.worldvidyaschool.in/registrationform', formDataJSON)
                 .then(function (response) {
                     console.log(response.data);
                     // Redirect to the home page upon successful submission
@@ -383,7 +383,7 @@
 
         function fetchReceipt(mobileNo) {
             // Replace 'api_url' with the actual URL of your API endpoint for fetching receipt
-            axios.get('http://localhost:8085/reciept', {
+            axios.get('https:api.worldvidyaschool.in/reciept', {
                 params: {
                     mobileNo: mobileNo
                 }

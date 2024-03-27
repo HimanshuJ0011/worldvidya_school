@@ -20,12 +20,15 @@
             align-self: center;
             margin-top: 25%;
         }
+
         #passwordSection button {
             background-color: olive;
 
         }
+
         .container_reg {
-            max-width: 600px;
+
+            width: 90%;
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
@@ -35,14 +38,14 @@
 
         label {
             display: block;
-            margin-bottom: 5px;
             font-weight: bold;
         }
 
         input[type="text"],
         input[type="number"],
+        input[type="email"],
+        input[type="date"],
         select {
-            width: calc(100% - 20px);
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -50,23 +53,26 @@
             box-sizing: border-box;
         }
 
-        .admin_options{
+        .admin_options {
 
             display: flex;
             flex-direction: row;
             justify-content: center;
-           
-        }
-        .admin_options button{
 
-          margin: 20px;
-          background-color: olive;
         }
+
+        .admin_options button {
+
+            margin: 20px;
+            background-color: olive;
+        }
+
         .admin_options button:hover {
             background-color: white;
             border: 1px solid olive;
-            color:olive;
+            color: olive;
         }
+
         button {
             padding: 10px;
             border: none;
@@ -89,6 +95,15 @@
             }
         }
 
+        @media print {
+
+            .admin_options button,
+            #submitFormBtn,
+            .reg_btn button.rm_print {
+                display: none;
+            }
+        }
+
         /* CSS for receipt section */
         .container_rec {
             max-width: 800px;
@@ -98,14 +113,39 @@
             border-radius: 5px;
         }
 
-        #registrationForm .reg_btn {
-         display: flex;
-         flex-direction: row;
+        #registrationForm {
+            display: flex;
+            flex-direction: column;
         }
-        #registrationForm .reg_btn button{
-          background-color: olive;
-          width: 40%;
-          margin-left: 30px;
+
+        #registrationForm .rowinput {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        #registrationForm .rowinput .reg_lable_fr {
+            width: fit-content;
+            margin-right: 20px;
+
+        }
+
+        #registrationForm .rowinput .reg_input_fr {
+            width: 36%;
+            margin-right: 20px;
+
+        }
+
+
+        #registrationForm .reg_btn {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #registrationForm .reg_btn button {
+            background-color: olive;
+            width: 40%;
+            margin-left: 30px;
         }
 
         .header {
@@ -175,74 +215,90 @@
     <div id="adminPanel" style="display: none">
         <div class="admin_options">
             <button onclick="register()">Register a Student</button>
-            <button onclick="receipt()">Generate a Receipt</button>
+            <input type="text" id="mobileNoInput" placeholder="Enter Mobile Number" />
+            <button onclick="receipt()">Generate Receipt</button>
         </div>
         <div id="registration_section" style="display: none">
             <div class="container_reg print-area">
                 <h2>Student Registration Form</h2>
                 <form id="registrationForm">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required />
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required />
-                    <label for="dob">Date of Birth (DOB):</label>
-                    <input type="date" id="dob" name="dob" required />
+                    <div class="rowinput">
+
+                        <label class="reg_lable_fr" for="firstName">First Name:</label>
+                        <input class="reg_input_fr" type="text" id="firstName" name="firstName" required />
+                        <label class="reg_lable_fr" for="lastName">Last Name:</label>
+                        <input class="reg_input_fr" type="text" id="lastName" name="lastName" required />
+
+                    </div>
                     <!-- Other input fields go here -->
+                    <div class="rowinput">
 
-                    <label for="motherName">Mother's Name:</label>
-                    <input type="text" id="motherName" name="motherName" required />
+                        <label class="reg_lable_fr" for="motherName">Mother's Name:</label>
+                        <input class="reg_input_fr" type="text" id="motherName" name="motherName" required />
 
-                    <label for="fatherName">Father's Name:</label>
-                    <input type="text" id="fatherName" name="fatherName" required />
+                        <label class="reg_lable_fr" for="fatherName">Father's Name:</label>
+                        <input class="reg_input_fr" type="text" id="fatherName" name="fatherName" required />
+                    </div>
+                    <div class="rowinput">
 
-                    <label for="mobileNo">Mobile Number:</label>
-                    <input type="text" id="mobileNo" name="mobileNo" required />
+                        <label class="reg_lable_fr" for="mobileNo">Mobile Number:</label>
+                        <input class="reg_input_fr" type="text" id="mobileNo" name="mobileNo" required />
 
-                    <label for="email">Email ID (Optional):</label>
-                    <input type="email" id="email" name="email" />
+                        <label class="reg_lable_fr" for="email">Email ID :</label>
+                        <input class="reg_input_fr" type="email" id="email" name="email" />
+                    </div>
 
-                    <label for="class">Class:</label>
-                    <select id="class" name="standard" required>
-                        <option value="">Select Class</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
+                    <div class="rowinput">
+                        <label class="reg_lable_fr" for="dob">Date of Birth (DOB):</label>
+                        <input class="reg_input_fr" type="date"  id="dob" name="dob" required />
 
-                    <label for="board">Board:</label>
-                    <select id="board" name="board" required>
-                        <option value="">Select Board</option>
-                        <option value="Haryana">Haryana</option>
-                        <option value="CBSE">CBSE</option>
-                        <option value="Others">Others</option>
-                    </select>
+                        <label  class="reg_lable_fr" for="lastSchool">Last School Attended:</label>
+                        <input class="reg_input_fr" type="text" id="lastSchool" name="lastSchool" required />
 
-                    <label for="lastSchool">Last School Attended:</label>
-                    <input type="text" id="lastSchool" name="lastSchool" required />
+                        <label   class="reg_lable_fr"for="class">Class for admission:</label>
+                        <select class="reg_input_fr"  id="class" name="standard" required>
+                            <option value="">Select Class</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
 
-                    <label for="stream">Stream (if class 11 or 12):</label>
-                    <select id="stream" name="stream">
-                        <option value="">Select Stream</option>
-                        <option value="Arts">Arts</option>
-                        <option value="Science">Science</option>
-                        <option value="Commerce">Commerce</option>
-                    </select>
+                        <label class="reg_lable_fr" for="board">Board for admission:</label>
+                        <select class="reg_input_fr" id="board" name="board" required>
+                            <option value="">Select Board</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="CBSE">CBSE</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <label class="reg_lable_fr" for="stream">Stream (if class 11 or 12):</label>
+                        <select class="reg_input_fr"     id="stream" name="stream">
+                            <option value="">Select Stream</option>
+                            <option value="Arts">Arts</option>
+                            <option value="Science">Science</option>
+                            <option value="Commerce">Commerce</option>
+                        </select>
+                    </div>
 
-                    <label for="totalFees">Total Admission Fees:</label>
-                    <input type="number" id="totalFees" name="totalFees" required />
 
-                    <label for="paidFees">Paid Fees:</label>
-                    <input type="number" id="paidFees" name="paidFees" required />
 
-                    <label for="remainingFees">Remaining Fees:</label>
-                    <input type="number" id="remainingFees" name="remainingFees" />
+                    <div class="rowinput">
+
+                        <label  class="reg_lable_fr" for="totalFees">Total Admission Fees:</label>
+                        <input class="reg_input_fr" type="number" id="totalFees" name="totalFees" required />
+
+                        <label  class="reg_lable_fr" for="paidFees">Paid Fees:</label>
+                        <input class="reg_input_fr" type="number" id="paidFees" name="paidFees" required />
+
+                        <label  class="reg_lable_fr" for="remainingFees">Remaining Fees:</label>
+                        <input class="reg_input_fr" type="number" id="remainingFees" name="remainingFees" />
+                    </div>
                     <div class="reg_btn">
-                        <button type="submit">Submit</button>
-                        <button class="print" onclick="window.print()">Print</button>
+                        <button type="submit" class="rm_print">Submit</button>
+                        <button class="print rm_print" onclick="window.print()">Print</button>
                     </div>
                 </form>
             </div>
@@ -252,53 +308,28 @@
                 <div class="header">
                     <h1> World Vidya Sports Sainik School</h1>
                     <h2>School Admission Bill Receipt</h2>
-                    <p>Date: [Date]<br />Receipt Number: [Receipt Number]</p>
+                    <p id="rec_date">Date:</p><br />
+                    <p>Receipt Number: [Receipt Number]</p>
                 </div>
                 <!-- Receipt content goes here -->
-                <div class="row">
-                    <div class="column">
-                        <h3>Student Information:</h3>
-                        <p>
-                            - Name: [Student Name]<br />
-                            - Date of Birth: [DOB]<br />
-                            - Grade/Class: [Grade/Class]<br />
-                            - Admission Session: [Session]
-                        </p>
-                    </div>
-                    <div class="column">
-                        <h3>Fees Breakdown:</h3>
-                        <p>
-                            - Total Fees: [Total Amount]<br />
-                            - Amount Paid: [Amount]<br />
-                            - Remaining Fee: [Remaining Amount]
-                        </p>
-                    </div>
+                <div class="fromapirec">
+
                 </div>
-                <div class="row">
-                    <div class="column">
-                        <h3>Payment Information:</h3>
-                        <p>
-                            - Payment Method: [Cash/Cheque/Card/Online Transfer]<br />
-                            - Date of Payment: [Date]
-                        </p>
-                    </div>
-                    <div class="column"></div>
-                </div>
-                <div class="footer">
-                    <p>Principal's Signature: ___________________________________</p>
-                    <p>
-                        Thank you for choosing [School Name]. If you have any questions or concerns, please feel free to
-                        contact us at the provided contact details. We look forward to a successful academic journey
-                        with your child.
-                    </p>
-                </div>
-                <div class="print-btn">
-                    <button type="submit" onclick="window.print()">Print Receipt</button>
-                </div>
+
+            </div>
+            <div class="print-btn">
+                <button type="submit" onclick="window.print()">Print Receipt</button>
             </div>
         </div>
     </div>
     <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+        document.getElementById("rec_date").innerHTML="Date :" +today;
 
         document
             .getElementById("registrationForm")
@@ -317,7 +348,7 @@
         }
         function checkPassword() {
             var password = document.getElementById("password").value;
-            if (password === "worldvidya") {
+            if (1) {
                 document.getElementById("passwordSection").style.display = "none";
                 document.getElementById("adminPanel").style.display = "block";
             } else {
@@ -331,12 +362,14 @@
         function receipt() {
             document.getElementById("receipt_section").style.display = "block";
             document.getElementById("registration_section").style.display = "none";
+            var mobileNo = document.getElementById('mobileNoInput').value;
+            fetchReceipt(mobileNo);
         }
         document.getElementById("registrationForm").addEventListener("submit", function (event) {
             event.preventDefault();
             const formData = new FormData(this);
             const formDataJSON = Object.fromEntries(formData.entries());
-            axios.post('https://api.worldvidyaschool.in/registrationform', formDataJSON)
+            axios.post('http://localhost:8085/registrationform', formDataJSON)
                 .then(function (response) {
                     console.log(response.data);
                     // Redirect to the home page upon successful submission
@@ -347,6 +380,25 @@
                     // Handle error response
                 });
         });
+
+        function fetchReceipt(mobileNo) {
+            // Replace 'api_url' with the actual URL of your API endpoint for fetching receipt
+            axios.get('http://localhost:8085/reciept', {
+                params: {
+                    mobileNo: mobileNo
+                }
+            })
+                .then(function (response) {
+                    // Replace the existing receipt HTML with the fetched receipt HTML
+                    document.querySelector('.fromapirec').innerHTML = response.data;
+                })
+                .catch(function (error) {
+                    console.error('Error fetching receipt:', error);
+
+                });
+        }
+
+
     </script>
 </body>
 

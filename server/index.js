@@ -9,7 +9,7 @@ const Registration = require('./API/registrationFormApi')
 const Reciept = require('./API/recieptApi')
 
 const app = express();
-const PORT = 3000;
+const PORT = 8085;
 app.set('view engine', 'ejs');
 
 app.use(cors());

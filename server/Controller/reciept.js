@@ -1,7 +1,7 @@
 const Student = require('../Models/registrationSchema');
 
 const Reciept = async (req, res) => {
-    const { mobileNo } = req.body; 
+    const { mobileNo } = req.query; 
   
     try {
       const student = await Student.findOne({ mobileNo });
@@ -12,29 +12,36 @@ const Reciept = async (req, res) => {
   
      
       const html = `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="utf-8">
-          <title>Student Details</title>
-        </head>
-        <body>
-          <h2>Student Details</h2>
-          <p>Name: ${student.firstName} ${student.lastName}</p>
-          <p>Date of Birth: ${student.dob}</p>
-          <p>Mother's Name: ${student.motherName}</p>
-          <p>Father's Name: ${student.fatherName}</p>
-          <p>Mobile No: ${student.mobileNo}</p>
-          <p>Email: ${student.email}</p>
-          <p>Standard: ${student.standard}</p>
-          <p>Board: ${student.board}</p>
-          <p>Last School: ${student.lastSchool}</p>
-          <p>Stream: ${student.stream}</p>
-          <p>Total Fees: ${student.totalFees}</p>
-          <p>Paid Fees: ${student.paidFees}</p>
-          <p>Remaining Fees: ${student.remainingFees}</p>
-        </body>
-        </html>
+        <div class="row">
+                    <div class="column">
+                        <h3>Student Information:</h3>
+                        <p>
+                            - Name:  ${student.firstName} ${student.lastName}<br /><br />
+                            - Date of Birth:${student.dob}<br /><br />
+                            - Father's Name: ${student.fatherName}<br /><br />
+                            - Grade/Class:  ${student.standard}<br /><br />
+                            - Admission Session: 2024-2025
+                        </p>
+                    </div>
+                    <div class="column">
+                        <h3>Fees Breakdown:</h3>
+                        <p>
+                            - Total Fees:  ${student.totalFees}<br /><br />
+                            - Amount Paid: ${student.paidFees}<br /><br />
+                            - Remaining Fee: ${student.remainingFees}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h3>Payment Information:</h3>
+                        <p>
+                            - Payment Method: [Cash/Cheque/Card/Online Transfer]<br />
+                            - Date of Payment: [Date]
+                        </p>
+                    </div>
+                    <div class="column"></div>
+                </div
       `;
   
       
